@@ -11,7 +11,7 @@
     "require": {
         "php": ">=5.5.0",
         "league/flysystem": "^1.0.40",
-        "ilab/ilab-aws-media-cloud-sdk": "^0.2.1"
+        "ilab/ilab-aws-media-cloud-sdk": "^0.2.2"
     },
     "require-dev": {
         "phpspec/phpspec": "^2.0.0",
