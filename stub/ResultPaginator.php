@@ -3,7 +3,7 @@
 namespace ILAB_League\Flysystem\AwsS3v3\Stub;
 
 use GuzzleHttp\Promise;
-use ILAB_Aws\Result;
+use ILABAmazon\Result;
 use GuzzleHttp\Promise\PromiseInterface;
 
 class ResultPaginator implements \Iterator

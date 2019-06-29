@@ -2,11 +2,11 @@
 
 namespace spec\ILAB_League\Flysystem\AwsS3v3;
 
-use ILAB_Aws\Command;
-use ILAB_Aws\Result;
-use ILAB_Aws\S3\Exception\DeleteMultipleObjectsException;
-use ILAB_Aws\S3\Exception\S3Exception;
-use ILAB_Aws\S3\Exception\S3MultipartUploadException;
+use ILABAmazon\Command;
+use ILABAmazon\Result;
+use ILABAmazon\S3\Exception\DeleteMultipleObjectsException;
+use ILABAmazon\S3\Exception\S3Exception;
+use ILABAmazon\S3\Exception\S3MultipartUploadException;
 use GuzzleHttp\Psr7;
 use League\Flysystem\AdapterInterface;
 use League\Flysystem\AwsS3v3\AwsS3Adapter;
@@ -18,14 +18,14 @@ use Prophecy\Argument;
 class AwsS3AdapterSpec extends ObjectBehavior
 {
     /**
-     * @var \ILAB_Aws\S3\S3Client
+     * @var \ILABAmazon\S3\S3Client
      */
     private $client;
     private $bucket;
     const PATH_PREFIX = 'path-prefix';
 
     /**
-     * @param \ILAB_Aws\S3\S3Client $client
+     * @param \ILABAmazon\S3\S3Client $client
      */
     public function let($client)
     {
@@ -81,9 +81,9 @@ class AwsS3AdapterSpec extends ObjectBehavior
     }
 
     /**
-     * @param \ILAB_Aws\CommandInterface $command
-     * @param \ILAB_Aws\CommandInterface $headCommand
-     * @param \ILAB_Aws\CommandInterface $listCommand
+     * @param \ILABAmazon\CommandInterface $command
+     * @param \ILABAmazon\CommandInterface $headCommand
+     * @param \ILABAmazon\CommandInterface $listCommand
      */
     public function it_should_delete_files($command, $headCommand, $listCommand)
     {
@@ -100,7 +100,7 @@ class AwsS3AdapterSpec extends ObjectBehavior
     }
 
     /**
-     * @param \ILAB_Aws\CommandInterface $command
+     * @param \ILABAmazon\CommandInterface $command
      */
     public function it_should_read_a_file($command)
     {
@@ -108,7 +108,7 @@ class AwsS3AdapterSpec extends ObjectBehavior
     }
 
     /**
-     * @param \ILAB_Aws\CommandInterface $command
+     * @param \ILABAmazon\CommandInterface $command
      */
     public function it_should_read_a_file_stream($command)
     {
@@ -118,7 +118,7 @@ class AwsS3AdapterSpec extends ObjectBehavior
     }
 
     /**
-     * @param \ILAB_Aws\CommandInterface $command
+     * @param \ILABAmazon\CommandInterface $command
      */
     public function it_should_return_when_trying_to_read_an_non_existing_file($command)
     {
@@ -134,7 +134,7 @@ class AwsS3AdapterSpec extends ObjectBehavior
     }
 
     /**
-     * @param \ILAB_Aws\CommandInterface $command
+     * @param \ILABAmazon\CommandInterface $command
      */
     public function it_should_retrieve_all_file_metadata($command)
     {
@@ -142,7 +142,7 @@ class AwsS3AdapterSpec extends ObjectBehavior
     }
 
     /**
-     * @param \ILAB_Aws\CommandInterface $command
+     * @param \ILABAmazon\CommandInterface $command
      */
     public function it_should_retrieve_the_timestamp_of_a_file($command)
     {
@@ -150,7 +150,7 @@ class AwsS3AdapterSpec extends ObjectBehavior
     }
 
     /**
-     * @param \ILAB_Aws\CommandInterface $command
+     * @param \ILABAmazon\CommandInterface $command
      */
     public function it_should_retrieve_the_mimetype_of_a_file($command)
     {
@@ -158,7 +158,7 @@ class AwsS3AdapterSpec extends ObjectBehavior
     }
 
     /**
-     * @param \ILAB_Aws\CommandInterface $command
+     * @param \ILABAmazon\CommandInterface $command
      */
     public function it_should_retrieve_the_size_of_a_file($command)
     {
@@ -166,7 +166,7 @@ class AwsS3AdapterSpec extends ObjectBehavior
     }
 
     /**
-     * @param \ILAB_Aws\CommandInterface $command
+     * @param \ILABAmazon\CommandInterface $command
      */
     public function it_should_return_true_when_object_exists($command)
     {
@@ -178,7 +178,7 @@ class AwsS3AdapterSpec extends ObjectBehavior
     }
 
     /**
-     * @param \ILAB_Aws\CommandInterface $command
+     * @param \ILABAmazon\CommandInterface $command
      */
     public function it_should_return_true_when_prefix_exists($command)
     {
@@ -201,8 +201,8 @@ class AwsS3AdapterSpec extends ObjectBehavior
     }
 
     /**
-     * @param \ILAB_Aws\CommandInterface $command
-     * @param \ILAB_Aws\S3\Exception\S3Exception $exception
+     * @param \ILABAmazon\CommandInterface $command
+     * @param \ILABAmazon\S3\Exception\S3Exception $exception
      */
     public function it_should_return_false_when_listing_objects_returns_a_403($command, $exception)
     {
@@ -225,8 +225,8 @@ class AwsS3AdapterSpec extends ObjectBehavior
     }
 
     /**
-     * @param \ILAB_Aws\CommandInterface $command
-     * @param \ILAB_Aws\S3\Exception\S3Exception $exception
+     * @param \ILABAmazon\CommandInterface $command
+     * @param \ILABAmazon\S3\Exception\S3Exception $exception
      */
     public function it_should_pass_through_when_listing_objects_throws_an_exception($command, $exception)
     {
@@ -249,8 +249,8 @@ class AwsS3AdapterSpec extends ObjectBehavior
     }
 
     /**
-     * @param \ILAB_Aws\CommandInterface $command
-     * @param \ILAB_Aws\CommandInterface $aclCommand
+     * @param \ILABAmazon\CommandInterface $command
+     * @param \ILABAmazon\CommandInterface $aclCommand
      */
     public function it_should_copy_files($command, $aclCommand)
     {
@@ -262,8 +262,8 @@ class AwsS3AdapterSpec extends ObjectBehavior
     }
 
     /**
-     * @param \ILAB_Aws\CommandInterface $command
-     * @param \ILAB_Aws\CommandInterface $aclCommand
+     * @param \ILABAmazon\CommandInterface $command
+     * @param \ILABAmazon\CommandInterface $aclCommand
      */
     public function it_should_return_false_when_copy_fails($command, $aclCommand)
     {
@@ -291,8 +291,8 @@ class AwsS3AdapterSpec extends ObjectBehavior
     }
 
     /**
-     * @param \ILAB_Aws\CommandInterface $command
-     * @param \ILAB_Aws\CommandInterface $aclCommand
+     * @param \ILABAmazon\CommandInterface $command
+     * @param \ILABAmazon\CommandInterface $aclCommand
      */
     public function it_should_return_false_during_rename_when_copy_fails($command, $aclCommand)
     {
@@ -304,11 +304,11 @@ class AwsS3AdapterSpec extends ObjectBehavior
     }
 
     /**
-     * @param \ILAB_Aws\CommandInterface $copyCommand
-     * @param \ILAB_Aws\CommandInterface $deleteCommand
-     * @param \ILAB_Aws\CommandInterface $aclCommand
-     * @param \ILAB_Aws\CommandInterface $headCommand
-     * @param \ILAB_Aws\CommandInterface $listCommand
+     * @param \ILABAmazon\CommandInterface $copyCommand
+     * @param \ILABAmazon\CommandInterface $deleteCommand
+     * @param \ILABAmazon\CommandInterface $aclCommand
+     * @param \ILABAmazon\CommandInterface $headCommand
+     * @param \ILABAmazon\CommandInterface $listCommand
      */
     public function it_should_copy_and_delete_during_renames($copyCommand, $deleteCommand, $aclCommand, $headCommand, $listCommand)
     {
@@ -385,7 +385,7 @@ class AwsS3AdapterSpec extends ObjectBehavior
     }
 
     /**
-     * @param \ILAB_Aws\CommandInterface $aclCommand
+     * @param \ILABAmazon\CommandInterface $aclCommand
      */
     public function it_should_get_the_visibility_of_a_public_file($aclCommand)
     {
@@ -396,7 +396,7 @@ class AwsS3AdapterSpec extends ObjectBehavior
     }
 
     /**
-     * @param \ILAB_Aws\CommandInterface $aclCommand
+     * @param \ILABAmazon\CommandInterface $aclCommand
      */
     public function it_should_get_the_visibility_of_a_private_file($aclCommand)
     {
@@ -407,7 +407,7 @@ class AwsS3AdapterSpec extends ObjectBehavior
     }
 
     /**
-     * @param \ILAB_Aws\CommandInterface $command
+     * @param \ILABAmazon\CommandInterface $command
      */
     public function it_should_set_the_visibility_of_a_file_to_public($command)
     {
@@ -424,7 +424,7 @@ class AwsS3AdapterSpec extends ObjectBehavior
     }
 
     /**
-     * @param \ILAB_Aws\CommandInterface $command
+     * @param \ILABAmazon\CommandInterface $command
      */
     public function it_should_set_the_visibility_of_a_file_to_private($command)
     {
@@ -441,7 +441,7 @@ class AwsS3AdapterSpec extends ObjectBehavior
     }
 
     /**
-     * @param \ILAB_Aws\CommandInterface $command
+     * @param \ILABAmazon\CommandInterface $command
      */
     public function it_should_return_false_when_failing_to_set_visibility($command)
     {
@@ -458,7 +458,7 @@ class AwsS3AdapterSpec extends ObjectBehavior
     }
 
     /**
-     * @param \ILAB_Aws\CommandInterface $command
+     * @param \ILABAmazon\CommandInterface $command
      */
     public function it_should_return_false_when_failing_to_upload()
     {
@@ -477,7 +477,7 @@ class AwsS3AdapterSpec extends ObjectBehavior
     }
 
     /**
-     * @param \ILAB_Aws\CommandInterface $command
+     * @param \ILABAmazon\CommandInterface $command
      */
     public function it_should_return_path_in_response_without_prefix($command)
     {
@@ -578,7 +578,7 @@ class AwsS3AdapterSpec extends ObjectBehavior
     }
 
     /**
-     * @param \ILAB_Aws\CommandInterface $command
+     * @param \ILABAmazon\CommandInterface $command
      */
     public function it_should_read_a_file_streaming($command)
     {

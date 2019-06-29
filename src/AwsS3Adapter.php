@@ -2,11 +2,11 @@
 
 namespace ILAB_League\Flysystem\AwsS3v3;
 
-use ILAB_Aws\Result;
-use ILAB_Aws\S3\Exception\DeleteMultipleObjectsException;
-use ILAB_Aws\S3\Exception\S3Exception;
-use ILAB_Aws\S3\Exception\S3MultipartUploadException;
-use ILAB_Aws\S3\S3Client;
+use ILABAmazon\Result;
+use ILABAmazon\S3\Exception\DeleteMultipleObjectsException;
+use ILABAmazon\S3\Exception\S3Exception;
+use ILABAmazon\S3\Exception\S3MultipartUploadException;
+use ILABAmazon\S3\S3Client;
 use League\Flysystem\Adapter\AbstractAdapter;
 use League\Flysystem\Adapter\CanOverwriteFiles;
 use League\Flysystem\AdapterInterface;
